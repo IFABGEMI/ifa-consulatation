@@ -843,7 +843,7 @@
 
 
             <!-- Champs cachés pour Formspree -->
-            <input type="hidden" name="_next" value="https://360349d5-e29d-4e5a-ad81-c199db43702c-00-2g1q6nyv1z3wq.picard.replit.dev/merci.html">
+            <input type="hidden" name="_next" value="merci.html">
             <input type="hidden" name="_subject" value="Nouvelle demande de consultation Ifá">
             <input type="hidden" name="_autoresponse" value="Merci pour votre demande de consultation Ifá. Nous vous contacterons sous peu.">
 
@@ -1103,7 +1103,7 @@
             }).then(response => {
                 if (response.ok) {
                     // Success - redirect to thank you page
-                    window.location.href = '/merci.html';
+                    window.location.href = 'merci.html';
                 } else {
                     // Handle errors
                     response.json().then(data => {

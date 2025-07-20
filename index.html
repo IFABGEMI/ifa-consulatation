@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultation Ifá - Terre des Mystères</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #d4af37;
+            --accent-light: #f7e98e;
+            --text-color: #2d3748;
+            --text-light: #718096;
+            --bg-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --input-bg: rgba(255, 255, 255, 0.9);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 30px 80px rgba(0, 0, 0, 0.15);
+            --border-color: #e2e8f0;
+            --gradient-main: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+            --gradient-soft: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        }
+
+        [data-theme="dark"] {
+            --text-color: #f7fafc;
+            --text-light: #cbd5e0;
+            --bg-color: #1a202c;
+            --card-bg: rgba(45, 55, 72, 0.95);
+            --input-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            --shadow-hover: 0 30px 80px rgba(0, 0, 0, 0.5);
+            --border-color: #4a5568;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--gradient-main);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--text-color);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 50px 40px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-soft);
+            opacity: 0.5;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .banner {
+            width: 100%;
+            height: 200px;
+            margin: 0 auto 40px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-main);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .banner:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .banner-logo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 2;
+            background: white;
+        }
+
+        .banner-logo:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .banner-decorations {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .banner-decorations::before {
+            content: '✨';
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            font-size: 2rem;
+            color: var(--accent-light);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .banner-decorations::after {
+            content: '🌟';
+            position: absolute;
+            bottom: 25px;
+            right: 25px;
+            font-size: 1.8rem;
+            color: var(--accent-light);
+            animation: float 3s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            font-weight: 800;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            font-weight: 500;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .form-group {
+            margin-bottom: 30px;
+            animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            animation-fill-mode: both;
+        }
+        
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.15s; }
+        .form-group:nth-child(3) { animation-delay: 0.2s; }
+        .form-group:nth-child(4) { animation-delay: 0.25s; }
+        .form-group:nth-child(5) { animation-delay: 0.3s; }
+        .form-group:nth-child(6) { animation-delay: 0.35s; }
+        .form-group:nth-child(7) { animation-delay: 0.4s; }
+        .form-group:nth-child(8) { animation-delay: 0.45s; }
+        .form-group:nth-child(9) { animation-delay: 0.5s; }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 1rem;
+            letter-spacing: 0.01em;
+            position: relative;
+        }
+
+        label i {
+            margin-right: 8px;
+            color: var(--accent-color);
+            font-size: 0.9em;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            font-size: 1rem;
+            font-family: inherit;
+            font-weight: 500;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--input-bg);
+            backdrop-filter: blur(10px);
+            color: #2d3748;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15), 0 4px 20px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        input:hover, textarea:hover, select:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        input::placeholder, textarea::placeholder {
+            color: #a0aec0;
+            font-weight: 400;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+        
+        .radio-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 15px;
+        }
+        
+        .radio-item {
+            position: relative;
+        }
+        
+        .radio-item input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .radio-label {
+            display: flex;
+            align-items: center;
+            padding: 18px 22px;
+            background: var(--input-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+            color: #2d3748;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .radio-label::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-soft);
+            transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 0;
+        }
+
+        .radio-label > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .radio-label:hover::before {
+            left: 0;
+        }
+
+        .radio-label:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+        }
+
+        .radio-label i {
+            margin-right: 12px;
+            font-size: 1.1em;
+            color: var(--accent-color);
+            transition: all 0.3s ease;
+        }
+        
+        .radio-item input[type="radio"]:checked + .radio-label {
+            background: var(--gradient-main);
+            border-color: var(--primary-color);
+            color: white;
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .radio-item input[type="radio"]:checked + .radio-label i {
+            color: var(--accent-light);
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 20px;
+            background: var(--gradient-main);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .submit-btn.loading {
+            pointer-events: none;
+        }
+
+        .submit-btn.loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+
+
+        .theme-toggle {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            background: var(--card-bg);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.4rem;
+            color: var(--text-color);
+            box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .nav-about {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-about:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            color: var(--primary-color);
+        }
+
+        .nav-about i {
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+                margin: 10px;
+                border-radius: 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+                margin-bottom: 10px;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+                margin-bottom: 25px;
+            }
+            
+            .radio-group {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .radio-label {
+                padding: 15px 18px;
+                font-size: 0.95rem;
+            }
+            
+            .nav-about, .theme-toggle {
+                position: fixed;
+                top: 15px;
+                z-index: 1001;
+            }
+            
+            .nav-about {
+                left: 15px;
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+
+            .theme-toggle {
+                right: 15px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .banner {
+                height: 140px;
+                margin-bottom: 25px;
+                border-radius: 16px;
+            }
+            
+            .banner-logo {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .banner-decorations::before,
+            .banner-decorations::after {
+                font-size: 1.5rem;
+            }
+            
+            .form-group {
+                margin-bottom: 20px;
+            }
+            
+            .form-group label {
+                font-size: 0.95rem;
+                margin-bottom: 8px;
+            }
+            
+            input, textarea, select {
+                font-size: 16px; /* Prevents zoom on iOS */
+                padding: 15px 18px;
+            }
+            
+
+            
+            .submit-btn {
+                padding: 18px;
+                font-size: 1.1rem;
+                margin-top: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 5px;
+                padding: 15px 12px;
+                border-radius: 16px;
+            }
+            
+            h1 {
+                font-size: 1.9rem;
+            }
+            
+            .subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .banner {
+                height: 120px;
+                margin-bottom: 20px;
+            }
+            
+            .banner-logo {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .nav-about {
+                padding: 10px 15px;
+                font-size: 0.85rem;
+            }
+            
+            .theme-toggle {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+            
+            .form-group {
+                margin-bottom: 18px;
+            }
+            
+            input, textarea {
+                padding: 14px 16px;
+            }
+            
+            .radio-label {
+                padding: 14px 16px;
+                font-size: 0.9rem;
+            }
+            
+
+            
+            .submit-btn {
+                padding: 16px;
+                font-size: 1rem;
+                margin-top: 20px;
+            }
+        }
+            
+            .banner-logo {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            input, textarea, select {
+                padding: 14px 16px;
+                font-size: 0.95rem;
+            }
+
+            .radio-label {
+                padding: 16px 18px;
+                font-size: 0.95rem;
+            }
+
+            .submit-btn {
+                padding: 18px;
+                font-size: 1.1rem;
+            }
+
+            .banner {
+                height: 140px;
+                margin-bottom: 25px;
+            }
+            
+            .banner-logo {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="about.html" class="nav-about">
+        <i class="fas fa-info-circle"></i> À propos de l'Ifá
+    </a>
+    
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+
+    <div class="container">
+        <div class="header">
+            <div class="banner">
+                <div class="banner-decorations"></div>
+                <img src="new-logo.jpg" alt="Logo Ifá Consultation" class="banner-logo">
+            </div>
+            <h1>Consultation Ifá</h1>
+            <p class="subtitle">Découvrez votre destinée à travers la sagesse ancestrale de l'oracle Ifá</p>
+        </div>
+
+        <form id="consultationForm" action="https://formspree.io/f/xblkdryj" method="POST">
+            <div class="form-group">
+                <label for="name">
+                    <i class="fas fa-user"></i>
+                    Nom complet *
+                </label>
+                <input type="text" id="name" name="name" required placeholder="Votre nom complet">
+            </div>
+
+            <div class="form-group">
+                <label for="birth_date">
+                    <i class="fas fa-calendar-alt"></i>
+                    Date de naissance *
+                </label>
+                <input type="date" id="birth_date" name="birth_date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="birth_time">
+                    <i class="fas fa-clock"></i>
+                    Heure de naissance
+                </label>
+                <input type="time" id="birth_time" name="birth_time" placeholder="Si vous la connaissez">
+            </div>
+
+            <div class="form-group">
+                <label for="birth_place">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Lieu de naissance *
+                </label>
+                <input type="text" id="birth_place" name="birth_place" required placeholder="Ville, Pays">
+            </div>
+
+            <div class="form-group">
+                <label for="mother_name">
+                    <i class="fas fa-heart"></i>
+                    Nom de votre mère *
+                </label>
+                <input type="text" id="mother_name" name="mother_name" required placeholder="Nom complet de votre mère">
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <i class="fas fa-star"></i>
+                    Type de consultation *
+                </label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="general" name="consultation_type" value="general" required>
+                        <label for="general" class="radio-label">
+                            <i class="fas fa-eye"></i>
+                            Consultation générale
+                        </label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="love" name="consultation_type" value="love" required>
+                        <label for="love" class="radio-label">
+                            <i class="fas fa-heart"></i>
+                            Amour & Relations
+                        </label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="career" name="consultation_type" value="career" required>
+                        <label for="career" class="radio-label">
+                            <i class="fas fa-briefcase"></i>
+                            Carrière & Finances
+                        </label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="health" name="consultation_type" value="health" required>
+                        <label for="health" class="radio-label">
+                            <i class="fas fa-leaf"></i>
+                            Santé & Bien-être
+                        </label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="spiritual" name="consultation_type" value="spiritual" required>
+                        <label for="spiritual" class="radio-label">
+                            <i class="fas fa-om"></i>
+                            Guidance spirituelle
+                        </label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="specific" name="consultation_type" value="specific" required>
+                        <label for="specific" class="radio-label">
+                            <i class="fas fa-question-circle"></i>
+                            Question spécifique
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="question">
+                    <i class="fas fa-comment-dots"></i>
+                    Votre question ou préoccupation
+                </label>
+                <textarea id="question" name="question" placeholder="Décrivez votre situation ou posez votre question (optionnel mais recommandé pour une consultation plus précise)"></textarea>
+            </div>
+
+
+
+            <!-- Champs cachés pour Formspree -->
+            <input type="hidden" name="_next" value="https://360349d5-e29d-4e5a-ad81-c199db43702c-00-2g1q6nyv1z3wq.picard.replit.dev/merci.html">
+            <input type="hidden" name="_subject" value="Nouvelle demande de consultation Ifá">
+            <input type="hidden" name="_autoresponse" value="Merci pour votre demande de consultation Ifá. Nous vous contacterons sous peu.">
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <i class="fas fa-paper-plane"></i>
+                Demander ma consultation
+            </button>
+        </form>
+    </div>
+
+    <script>
+        // Multi-language support
+        const translations = {
+            fr: {
+                pageTitle: "Consultation Ifá - Terre des Mystères",
+                title: "Consultation Ifá",
+                subtitle: "Découvrez les mystères de votre destinée grâce à la sagesse ancestrale Yoruba",
+                navAbout: "À propos",
+                formTitle: "Demande de Consultation",
+                nameLabel: "Nom complet",
+                namePlaceholder: "Votre nom complet",
+                birthDateLabel: "Date de naissance",
+                birthTimeLabel: "Heure de naissance",
+                birthTimePlaceholder: "Ex: 14:30 (optionnel mais recommandé)",
+                birthPlaceLabel: "Lieu de naissance",
+                birthPlacePlaceholder: "Ville, Pays",
+                motherNameLabel: "Nom de jeune fille de votre mère",
+                motherNamePlaceholder: "Nom de famille de naissance de votre mère",
+                consultationTypeLabel: "Type de consultation",
+                love: "Amour et relations",
+                career: "Carrière et finances",
+                health: "Santé et bien-être",
+                spiritual: "Guidance spirituelle",
+                specific: "Question spécifique",
+                questionLabel: "Votre question ou préoccupation",
+                questionPlaceholder: "Décrivez votre situation ou posez votre question (optionnel mais recommandé pour une consultation plus précise)",
+
+                submitBtn: "Demander ma consultation",
+                submitting: "Envoi en cours...",
+                selectConsultationType: "Veuillez sélectionner un type de consultation.",
+                fillRequired: "Veuillez remplir tous les champs obligatoires.",
+
+                submitError: "Erreur lors de l'envoi. Veuillez réessayer.",
+                connectionError: "Erreur de connexion. Veuillez vérifier votre connexion internet et réessayer."
+            },
+            en: {
+                pageTitle: "Ifá Consultation - Land of Mysteries",
+                title: "Ifá Consultation",
+                subtitle: "Discover the mysteries of your destiny through ancient Yoruba wisdom",
+                navAbout: "About",
+                formTitle: "Consultation Request",
+                nameLabel: "Full name",
+                namePlaceholder: "Your full name",
+                birthDateLabel: "Date of birth",
+                birthTimeLabel: "Time of birth",
+                birthTimePlaceholder: "Ex: 2:30 PM (optional but recommended)",
+                birthPlaceLabel: "Place of birth",
+                birthPlacePlaceholder: "City, Country",
+                motherNameLabel: "Your mother's maiden name",
+                motherNamePlaceholder: "Your mother's birth family name",
+                consultationTypeLabel: "Type of consultation",
+                love: "Love and relationships",
+                career: "Career and finances",
+                health: "Health and wellness",
+                spiritual: "Spiritual guidance",
+                specific: "Specific question",
+                questionLabel: "Your question or concern",
+                questionPlaceholder: "Describe your situation or ask your question (optional but recommended for more precise consultation)",
+
+                submitBtn: "Request my consultation",
+                submitting: "Sending...",
+                selectConsultationType: "Please select a consultation type.",
+                fillRequired: "Please fill in all required fields.",
+
+                submitError: "Error sending. Please try again.",
+                connectionError: "Connection error. Please check your internet connection and try again."
+            },
+            es: {
+                pageTitle: "Consulta Ifá - Tierra de Misterios",
+                title: "Consulta Ifá",
+                subtitle: "Descubre los misterios de tu destino a través de la sabiduría ancestral Yoruba",
+                navAbout: "Acerca de",
+                formTitle: "Solicitud de Consulta",
+                nameLabel: "Nombre completo",
+                namePlaceholder: "Tu nombre completo",
+                birthDateLabel: "Fecha de nacimiento",
+                birthTimeLabel: "Hora de nacimiento",
+                birthTimePlaceholder: "Ej: 14:30 (opcional pero recomendado)",
+                birthPlaceLabel: "Lugar de nacimiento",
+                birthPlacePlaceholder: "Ciudad, País",
+                motherNameLabel: "Nombre de soltera de tu madre",
+                motherNamePlaceholder: "Apellido de nacimiento de tu madre",
+                consultationTypeLabel: "Tipo de consulta",
+                love: "Amor y relaciones",
+                career: "Carrera y finanzas",
+                health: "Salud y bienestar",
+                spiritual: "Guía espiritual",
+                specific: "Pregunta específica",
+                questionLabel: "Tu pregunta o preocupación",
+                questionPlaceholder: "Describe tu situación o haz tu pregunta (opcional pero recomendado para una consulta más precisa)",
+
+                submitBtn: "Solicitar mi consulta",
+                submitting: "Enviando...",
+                selectConsultationType: "Por favor selecciona un tipo de consulta.",
+                fillRequired: "Por favor completa todos los campos obligatorios.",
+
+                submitError: "Error al enviar. Por favor intenta de nuevo.",
+                connectionError: "Error de conexión. Por favor verifica tu conexión a internet e intenta de nuevo."
+            }
+        };
+
+        // Detect browser language
+        function detectLanguage() {
+            const browserLang = navigator.language || navigator.userLanguage;
+            const langCode = browserLang.substring(0, 2).toLowerCase();
+            
+            // Check if we have translation for this language
+            if (translations[langCode]) {
+                return langCode;
+            }
+            
+            // Default to French
+            return 'fr';
+        }
+
+        // Apply translations to the page
+        function applyTranslations(lang) {
+            const t = translations[lang];
+            
+            // Update page title
+            document.title = t.pageTitle;
+            
+            // Update main content
+            document.querySelector('h1').textContent = t.title;
+            document.querySelector('.subtitle').textContent = t.subtitle;
+            document.querySelector('.nav-about').innerHTML = `<i class="fas fa-info-circle"></i> ${t.navAbout}`;
+            
+            // Update form labels and placeholders
+            document.querySelector('label[for="name"]').innerHTML = `<i class="fas fa-user"></i> ${t.nameLabel}`;
+            document.querySelector('#name').placeholder = t.namePlaceholder;
+            
+            document.querySelector('label[for="birth_date"]').innerHTML = `<i class="fas fa-calendar"></i> ${t.birthDateLabel}`;
+            
+            document.querySelector('label[for="birth_time"]').innerHTML = `<i class="fas fa-clock"></i> ${t.birthTimeLabel}`;
+            document.querySelector('#birth_time').placeholder = t.birthTimePlaceholder;
+            
+            document.querySelector('label[for="birth_place"]').innerHTML = `<i class="fas fa-map-marker-alt"></i> ${t.birthPlaceLabel}`;
+            document.querySelector('#birth_place').placeholder = t.birthPlacePlaceholder;
+            
+            document.querySelector('label[for="mother_name"]').innerHTML = `<i class="fas fa-heart"></i> ${t.motherNameLabel}`;
+            document.querySelector('#mother_name').placeholder = t.motherNamePlaceholder;
+            
+            document.querySelector('label[for="question"]').innerHTML = `<i class="fas fa-comment-dots"></i> ${t.questionLabel}`;
+            document.querySelector('#question').placeholder = t.questionPlaceholder;
+            
+            // Update consultation type labels
+            document.querySelector('label[for="love"]').innerHTML = `<i class="fas fa-heart"></i> ${t.love}`;
+            document.querySelector('label[for="career"]').innerHTML = `<i class="fas fa-briefcase"></i> ${t.career}`;
+            document.querySelector('label[for="health"]').innerHTML = `<i class="fas fa-leaf"></i> ${t.health}`;
+            document.querySelector('label[for="spiritual"]').innerHTML = `<i class="fas fa-om"></i> ${t.spiritual}`;
+            document.querySelector('label[for="specific"]').innerHTML = `<i class="fas fa-question-circle"></i> ${t.specific}`;
+            
+            // Update submit button
+            document.querySelector('#submitBtn').innerHTML = `<i class="fas fa-paper-plane"></i> ${t.submitBtn}`;
+            
+            // Store translations for JavaScript messages
+            window.currentTranslations = t;
+        }
+
+        // Initialize language on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const currentLang = detectLanguage();
+            applyTranslations(currentLang);
+            
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+            }
+        });
+
+        // Theme toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+            }
+        });
+
+        // Form validation and submission with Formspree
+        document.getElementById('consultationForm').addEventListener('submit', function(e) {
+            const submitBtn = document.getElementById('submitBtn');
+            
+            // Validate required fields before submission
+            const requiredFields = this.querySelectorAll('input[required], select[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.style.borderColor = '#e53e3e';
+                    field.focus();
+                } else {
+                    field.style.borderColor = '';
+                }
+            });
+            
+            // Check if consultation type is selected
+            const consultationType = this.querySelector('input[name="consultation_type"]:checked');
+            if (!consultationType) {
+                isValid = false;
+                alert(window.currentTranslations.selectConsultationType);
+            }
+            
+            if (!isValid) {
+                e.preventDefault();
+                alert(window.currentTranslations.fillRequired);
+                return;
+            }
+            
+            // Add loading state only if validation passes
+            submitBtn.classList.add('loading');
+            submitBtn.innerHTML = '<i class="fas fa-spinner"></i> ' + window.currentTranslations.submitting;
+            submitBtn.disabled = true;
+            
+            // Always use fetch for better control over responses
+            e.preventDefault();
+            const formData = new FormData(this);
+            
+            fetch('https://formspree.io/f/xblkdryj', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    // Success - redirect to thank you page
+                    window.location.href = '/merci.html';
+                } else {
+                    // Handle errors
+                    response.json().then(data => {
+                        console.log('Formspree error:', data);
+                        submitBtn.classList.remove('loading');
+                        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> ' + window.currentTranslations.submitBtn;
+                        submitBtn.disabled = false;
+                        alert(window.currentTranslations.submitError);
+                    });
+                }
+            }).catch(error => {
+                console.log('Network error:', error);
+                // Handle network errors
+                submitBtn.classList.remove('loading');
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> ' + window.currentTranslations.submitBtn;
+                submitBtn.disabled = false;
+                alert(window.currentTranslations.connectionError);
+            });
+        });
+
+
+
+        // Add smooth animations for form interactions
+        document.querySelectorAll('input, textarea, select').forEach(element => {
+            element.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'translateY(-2px)';
+            });
+            
+            element.addEventListener('blur', function() {
+                this.parentElement.style.transform = '';
+            });
+        });
+
+        // Add ripple effect to radio buttons
+        document.querySelectorAll('.radio-label').forEach(label => {
+            label.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add ripple animation CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos de l'Ifá - Terre des Mystères</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #d4af37;
+            --accent-light: #f7e98e;
+            --text-color: #2d3748;
+            --text-light: #718096;
+            --bg-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 30px 80px rgba(0, 0, 0, 0.15);
+            --gradient-main: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+            --gradient-soft: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        }
+
+        [data-theme="dark"] {
+            --text-color: #f7fafc;
+            --text-light: #cbd5e0;
+            --bg-color: #1a202c;
+            --card-bg: rgba(45, 55, 72, 0.95);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            --shadow-hover: 0 30px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--gradient-main);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--text-color);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 50px 40px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-soft);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .banner {
+            width: 100%;
+            height: 160px;
+            margin: 0 auto 30px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-main);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .banner:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .banner-logo {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 2;
+            background: white;
+        }
+
+        .banner-logo:hover {
+            transform: scale(1.03) rotate(1deg);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .banner-decorations {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .banner-decorations::before {
+            content: '✨';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.5rem;
+            color: var(--accent-light);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .banner-decorations::after {
+            content: '🌟';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 1.3rem;
+            color: var(--accent-light);
+            animation: float 3s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            font-weight: 800;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            font-weight: 500;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .content h2 {
+            color: var(--text-color);
+            margin: 40px 0 20px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .content h3 {
+            color: var(--accent-color);
+            margin: 30px 0 15px;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .content p {
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .content ul {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .content li {
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .highlight {
+            background: var(--gradient-accent);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .return-btn {
+            background: var(--gradient-main);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 40px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .return-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            background: var(--card-bg);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.4rem;
+            color: var(--text-color);
+            box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: var(--shadow-hover);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 25px;
+                margin: 15px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .content {
+                font-size: 1rem;
+            }
+            
+            .content h2 {
+                font-size: 1.6rem;
+            }
+            
+            .content h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+
+    <div class="container">
+        <div class="header">
+            <div class="banner">
+                <div class="banner-decorations"></div>
+                <img src="new-logo.jpg" alt="Logo Ifá" class="banner-logo">
+            </div>
+            <h1>À propos de l'Ifá</h1>
+            <p class="subtitle">Découvrez l'histoire et la sagesse de cette tradition ancestrale</p>
+        </div>
+
+        <div class="content">
+            <h2>Qu'est-ce que l'Ifá ?</h2>
+            <p>L'Ifá est un <span class="highlight">système de divination ancestral</span> originaire du peuple Yoruba d'Afrique de l'Ouest. Cette tradition millénaire représente l'une des formes les plus sophistiquées et les plus précises de guidance spirituelle au monde.</p>
+
+            <h3>🌟 Les Origines</h3>
+            <p>L'Ifá trouve ses racines dans la civilisation Yoruba, il y a plus de 4000 ans. Cette sagesse a été transmise de génération en génération par les <strong>Babalawos</strong> (prêtres d'Ifá), gardiens de cette connaissance sacrée.</p>
+
+            <h3>📚 Le Corpus d'Ifá</h3>
+            <p>Le système d'Ifá repose sur un corpus de <span class="highlight">256 Odù</span> (signes), chacun contenant des milliers de versets, histoires et conseils. Cette vaste bibliothèque de sagesse couvre tous les aspects de l'existence humaine :</p>
+            <ul>
+                <li>Relations amoureuses et familiales</li>
+                <li>Carrière et réussite professionnelle</li>
+                <li>Santé et bien-être</li>
+                <li>Développement spirituel</li>
+                <li>Défis et opportunités de la vie</li>
+            </ul>
+
+            <h3>🔮 Comment Fonctionne une Consultation ?</h3>
+            <p>Lors d'une consultation Ifá, le Babalawo utilise des <strong>chaînes divinatoires</strong> ou des <strong>noix de palmier sacrées</strong> pour identifier l'Odù qui correspond à votre situation. Chaque Odù révèle :</p>
+            <ul>
+                <li>Votre situation actuelle</li>
+                <li>Les énergies qui vous influencent</li>
+                <li>Les conseils pour harmoniser votre vie</li>
+                <li>Les rituels ou actions recommandés</li>
+                <li>Votre potentiel futur</li>
+            </ul>
+
+            <h3>✨ Pourquoi Consulter l'Ifá ?</h3>
+            <p>L'Ifá offre une perspective unique sur votre vie en révélant les forces spirituelles qui vous entourent. Cette consultation vous permet de :</p>
+            <ul>
+                <li><strong>Clarifier vos choix</strong> dans les moments d'incertitude</li>
+                <li><strong>Comprendre les défis</strong> que vous traversez</li>
+                <li><strong>Découvrir votre destinée</strong> et votre mission de vie</li>
+                <li><strong>Recevoir des conseils pratiques</strong> pour améliorer votre situation</li>
+                <li><strong>Vous connecter</strong> avec votre sagesse intérieure</li>
+            </ul>
+
+            <h2>Notre Approche</h2>
+            <p>Chez <strong>Terre des Mystères</strong>, nous honorons cette tradition ancestrale tout en l'adaptant aux besoins de notre époque. Nos consultations sont :</p>
+            <ul>
+                <li><strong>Authentiques</strong> : Basées sur la tradition yoruba originale</li>
+                <li><strong>Respectueuses</strong> : Conduites avec le plus grand respect pour la culture africaine</li>
+                <li><strong>Personnalisées</strong> : Adaptées à votre situation unique</li>
+                <li><strong>Bienveillantes</strong> : Offertes dans un esprit de service et d'aide</li>
+            </ul>
+
+            <h3>🎯 Ce que Vous Recevrez</h3>
+            <p>Après votre consultation, vous recevrez :</p>
+            <ul>
+                <li>Une <strong>interprétation détaillée</strong> de votre Odù</li>
+                <li>Des <strong>conseils pratiques</strong> pour votre situation</li>
+                <li>Un <strong>document PDF complet</strong> avec votre consultation</li>
+                <li>Si applicable, un <strong>enregistrement audio</strong> de votre lecture</li>
+            </ul>
+
+            <p><em>"L'Ifá ne prédit pas un futur figé, mais révèle les possibilités qui s'ouvrent à vous selon vos choix et actions."</em></p>
+
+            <a href="/" class="return-btn">
+                <i class="fas fa-arrow-left"></i>
+                Retour au formulaire
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+            }
+        });
+    </script>
+</body>
+</html>
